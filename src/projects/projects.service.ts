@@ -14,14 +14,20 @@ export class ProjectsService {
 
 
   create(createProjectDto: CreateProjectDto) {
-    return this.projects.save({
+    const project = {
+      id: createProjectDto.id,
       title: createProjectDto.title,
-      cards: createProjectDto.cards
-    });
+      cards: JSON.stringify(createProjectDto.cards),
+    };
+    return this.projects.save(project);
   }
 
-  findAll() {
-    return this.projects.find();
+  async findAll() {
+    const projects = await this.projects.find()
+    projects.forEach(project => {
+      project.cards = JSON.parse(project.cards);
+    });
+    return projects;
   }
 
   findOne(id: number) {

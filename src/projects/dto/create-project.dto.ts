@@ -3,8 +3,10 @@ import { IsNotEmpty } from "class-validator";
 
 export class CreateProjectDto {
   @IsNotEmpty()
-  title: string
+  id: string
 
   @IsNotEmpty()
-  cards: string;
+  title: string
+
+  cards: string[];
 }
