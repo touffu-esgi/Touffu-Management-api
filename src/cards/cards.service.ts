@@ -23,7 +23,9 @@ export class CardsService {
   }
 
   findOne(id: string) {
-    return `This action returns a #${id} card`;
+    return this.cards.findOneBy({
+      id: id
+    });
   }
 
   update(id: number, updateCardDto: UpdateCardDto) {
