@@ -5,6 +5,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { ProjectsModule } from './projects/projects.module';
 import { APP_FILTER } from "@nestjs/core";
 import { AllExceptionsFilter } from "./all-exceptions.filter";
+import { CardsModule } from './cards/cards.module';
 
 @Module({
   imports: [
@@ -14,7 +15,8 @@ import { AllExceptionsFilter } from "./all-exceptions.filter";
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true
     }),
-    ProjectsModule
+    ProjectsModule,
+    CardsModule
   ],
   controllers: [AppController],
   providers: [AppService, {
