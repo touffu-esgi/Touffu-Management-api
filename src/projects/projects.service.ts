@@ -30,15 +30,17 @@ export class ProjectsService {
     return projects;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} project`;
+  async findOne(id: string) {
+    const project = await this.projects.findOneBy({id: id})
+    project.cards = JSON.parse(project.cards);
+    return project;
   }
 
-  update(id: number, updateProjectDto: UpdateProjectDto) {
-    return `This action updates a #${id} project`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} project`;
+  update(id: string, updateProjectDto: UpdateProjectDto) {
+    const updatedProject = {
+      title: updateProjectDto.title,
+      cards: JSON.stringify(updateProjectDto.cards),
+    }
+    return this.projects.update(id, updatedProject);
   }
 }
