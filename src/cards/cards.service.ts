@@ -16,7 +16,7 @@ export class CardsService {
     return this.cards.save(createCardDto);
   }
 
-  findAll(projectId: string) {
+  findAllInProject(projectId: string) {
     return this.cards.findBy({
       projetId: projectId
     });
@@ -28,11 +28,15 @@ export class CardsService {
     });
   }
 
-  update(id: number, updateCardDto: UpdateCardDto) {
-    return `This action updates a #${id} card`;
+  update(id: string, updateCardDto: UpdateCardDto) {
+    return this.cards.save(updateCardDto);
   }
 
   remove(id: number) {
     return `This action removes a #${id} card`;
+  }
+
+  findAll() {
+    return this.cards.find();
   }
 }

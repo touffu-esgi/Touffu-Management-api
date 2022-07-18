@@ -13,8 +13,13 @@ export class CardsController {
   }
 
   @Get('project/:projectId')
-  findAll(@Param('projectId') projectId: string) {
-    return this.cardsService.findAll(projectId);
+  findAllInProject(@Param('projectId') projectId: string) {
+    return this.cardsService.findAllInProject(projectId);
+  }
+
+  @Get()
+  findAll() {
+    return this.cardsService.findAll();
   }
 
   @Get(':id')
@@ -24,7 +29,7 @@ export class CardsController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCardDto: UpdateCardDto) {
-    return this.cardsService.update(+id, updateCardDto);
+    return this.cardsService.update(id, updateCardDto);
   }
 
   @Delete(':id')
